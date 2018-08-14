@@ -8,6 +8,11 @@ class Block {
     this.data = data;
   }
 
+  static blockHash(block) {
+  	const { timestamp, lastHash, data } = block;
+    return Block.hash(timestamp, lastHash, data);
+  }
+
   static genesis() {
     return new this('Genesis time', 'DanTheMan', 'DanTheMan', []);
   }
