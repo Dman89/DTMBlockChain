@@ -11,11 +11,20 @@ class P2pServer {
   listen() {
     const server = new Websocket.Server({ port: P2P_PORT });
     server.on('connection', socket => this.connectSocket(socket));
+    this.connectToPeers();
+    console.log(`Listening to P2P connections on port: ${P2P_PORT}`)
   }
 
   connectSocket(socket) {
     this.sockets.push(socket);
     console.log('Socket connected');
+  }
+
+  connectToPeers() {
+    peers.forEach(peer => {
+      const socket = new Websocket(peer);
+      socket.on('open', () => this.connectSocket(socket));
+    });
   }
 }
 
