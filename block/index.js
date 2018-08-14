@@ -9,7 +9,7 @@ class Block {
   }
 
   static genesis() {
-    return new this('Genesis time', 'DanTheMan', Block.hash(Date.now(), 'DanTheMan', []), []);
+    return new this('Genesis time', 'DanTheMan', 'DanTheMan', []);
   }
 
   static hash(timestamp, lastHash, data) {
