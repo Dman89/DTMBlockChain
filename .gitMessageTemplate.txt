@@ -3,7 +3,7 @@
 #
 # Examples starting verbs for the subject:
 # Add / Remove / Update / Improve / Refactor / Fix
-# Comments / Docs / Style / Test / Chore
+# Comments / Docs / Style / Test / Chore / Deprecate
 #
 # What:
 
