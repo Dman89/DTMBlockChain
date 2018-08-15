@@ -1,0 +1,23 @@
+
+# Subject (Above / First Line):
+#
+# Examples starting verbs for the subject:
+# Add / Remove / Update / Improve / Refactor / Fix
+# Comments / Docs / Style / Test / Chore
+#
+# What:
+
+# Why:
+
+# Additional Notes:
+
+
+# General Notes / Great Git Commit Practice:
+#
+# Separate subject from body with a blank line
+# Limit the subject line to 50 characters
+# Capitalize the subject line
+# Do not end the subject line with a period
+# Use the imperative mood in the subject line
+# Wrap the body at 72 characters
+# Use the body to explain what and why
