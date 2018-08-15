@@ -1,23 +1,51 @@
+# If applied, this commit will...
 
-# Subject (Above / First Line):
-#
-# Examples starting verbs for the subject:
-# Add / Remove / Update / Improve / Refactor / Fix
-# Comments / Docs / Style / Test / Chore / Deprecate
-#
-# What:
 
-# Why:
+# What was done in this change?:
+What:
+
+
+# Why is this change necessary, e.g. goals, use cases, stories, etc.?
+Why:
+
 
 # Additional Notes:
 
 
+# Tags suitable for searching, such as hashtags, keywords, etc.
+Tags:
+
+
 # General Notes / Great Git Commit Practice:
 #
-# Separate subject from body with a blank line
-# Limit the subject line to 50 characters
-# Capitalize the subject line
-# Do not end the subject line with a period
-# Use the imperative mood in the subject line
-# Wrap the body at 72 characters
-# Use the body to explain what and why
+# Subject line imperative uppercase verbs:
+#
+#   Add = Create a capability e.g. feature, test, dependency.
+#   Remove = Delete a capability e.g. feature, test, dependency.
+#   Update = Update a capability e.g. feature, test, dependency.
+#   Deprecate = Begin removing support for a capability.
+#   Fix = Fix an issue e.g. bug, typo, accident, misstatement.
+#   Bump = Increase the version of something e.g. a dependency.
+#   Make = Change the build process, or tools, or infrastructure.
+#   Start = Begin doing something; e.g. enable a toggle, feature flag, etc.
+#   Stop = End doing something; e.g. disable a toggle, feature flag, etc.
+#   Comment = A change that MUST be adding comments.
+#   Style = A change that MUST be just style related.
+#   Refactor = A change that MUST be just refactoring.
+#   Reformat = A change that MUST be just format, e.g. indent line, trim space, etc.
+#   Rephrase = A change that MUST be just textual, e.g. edit a comment, doc, etc.
+#   Optimize = A change that MUST be just about performance, e.g. speed up code.
+#   Document = A change that MUST be only in the documentation, e.g. help files.
+#
+# For the subject line:
+#   * Use 50 characters maximum.
+#   * Capitalize the subject line.
+#   * Do not use a sentence-ending period.
+#   * Use the imperative mood in the subject line.
+#   * Separate subject from body with a blank line.
+#
+# For the body text:
+#   * Use as many lines as you like.
+#   * Use 72 characters maximum per line for typical word wrap text.
+#   * Use the body to explain what and why
+#
