@@ -4,10 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watchAll",
+    "dev": "nodemon ./app",
     "dev-test": "nodemon ./dev-test",
+    "dev-setup": "git config --local commit.template .gitMessageTemplate.txt && npm install && npm run dev",
+    "set-commit-template": "git config --local commit.template .gitMessageTemplate.txt",
     "start": "node ./app",
-    "dev": "nodemon ./app"
+    "test": "jest --watchAll"
   },
   "keywords": [],
   "author": "",
