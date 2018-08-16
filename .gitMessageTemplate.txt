@@ -1,4 +1,6 @@
 # If applied, this commit will...
+# Add / Remove / Update / Deprecate / Fix / Refactor
+# Comments / Docs / Style / Test / Bump / Deprecate
 
 
 # What was done in this change?:
