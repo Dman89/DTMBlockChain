@@ -1,5 +1,9 @@
 const ChainUtil = require('../chain-util');
-const { DIFFICULTY, MINE_RATE } = require('../config');
+const {
+  DIFFICULTY,
+  MINE_RATE_MIN,
+  MINE_RATE_MAX
+} = require('../config');
 
 class Block {
   constructor(block) {
@@ -20,7 +24,13 @@ class Block {
   }
 
   static blockHash(block) {
-  	const { timestamp, lastHash, data, nonce, difficulty } = block;
+    const {
+      timestamp,
+      lastHash,
+      data,
+      nonce,
+      difficulty
+    } = block;
     return Block.hash(timestamp, lastHash, data, nonce, difficulty);
   }
 
@@ -45,14 +55,16 @@ class Block {
       timestamp,
       nonce = 0;
     const lastHash = lastBlock.hash;
-    let { difficulty } = lastBlock;
+    let {
+      difficulty
+    } = lastBlock;
 
-	do {
-    nonce++;
-    timestamp = Date.now();
-		difficulty = Block.adjustDifficulty(lastBlock, timestamp);
-    hash = Block.hash(timestamp, lastHash, data, nonce, difficulty);
-  } while (hash.substring(0, difficulty) !== '0'.repeat(difficulty));
+    do {
+      nonce++;
+      timestamp = Date.now();
+      difficulty = Block.adjustDifficulty(lastBlock, timestamp);
+      hash = Block.hash(timestamp, lastHash, data, nonce, difficulty);
+    } while (hash.substring(0, difficulty) !== '0'.repeat(difficulty));
     return new this({
       timestamp,
       lastHash,
@@ -70,13 +82,18 @@ class Block {
     Hash       : ${this.hash.substring(0,10)}
     Nonce      : ${this.nonce}
     Difficulty : ${this.difficulty}
-    Data       : ${this.data}`;
+    Data       : ${this.data.length}`;
   }
 
   static adjustDifficulty(lastBlock, currentTime) {
-  	let { difficulty } = lastBlock;
-  	difficulty = lastBlock.timestamp + MINE_RATE > currentTime ?
-    difficulty + 1 : difficulty - 1;
+    let {
+      difficulty
+    } = lastBlock;
+    if (lastBlock.timestamp + MINE_RATE_MAX < currentTime) {
+      difficulty -= 1;
+    } else if (lastBlock.timestamp + MINE_RATE_MIN > currentTime) {
+      difficulty += 1;
+    }
     return difficulty;
   }
 }

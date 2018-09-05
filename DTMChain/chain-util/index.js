@@ -4,7 +4,10 @@ const uuidV1 = require('uuid/v1');
 const SHA256 = require('crypto-js/sha256');
 
 class ChainUtil {
-  static genKeyPair() {
+  static genKeyPair(privateKey) {
+    if (privateKey) {
+      return ec.keyFromPrivate(privateKey, 'hex');
+    }
     return ec.genKeyPair();
   }
 
@@ -17,7 +20,7 @@ class ChainUtil {
   }
 
   static verifySignature(publicKey, signature, dataHash) {
-  	return ec.keyFromPublic(publicKey, 'hex').verify(dataHash, signature);
+    return ec.keyFromPublic(publicKey, 'hex').verify(dataHash, signature);
   }
 
 }

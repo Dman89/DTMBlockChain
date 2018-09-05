@@ -15,9 +15,9 @@ class Blockchain {
 
   isValidChain(chain) {
     if (JSON.stringify(chain[0]) !== JSON.stringify(Block.genesis())) return false;
-    for (let i=1; i<chain.length; i++) {
+    for (let i = 1; i < chain.length; i++) {
       const block = chain[i];
-      const lastBlock = chain[i-1];
+      const lastBlock = chain[i - 1];
       if (
         block.lastHash !== lastBlock.hash ||
         block.hash !== Block.blockHash(block)
@@ -31,7 +31,7 @@ class Blockchain {
       newChain.length <= this.chain.length ||
       !this.isValidChain(newChain)
     ) return;
-    
+
     this.chain = newChain;
   }
 
