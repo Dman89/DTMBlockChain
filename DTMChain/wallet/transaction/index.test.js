@@ -8,6 +8,7 @@ describe('Transaction', () => {
   let transaction, wallet, recipient, amount, fee;
   beforeEach(() => {
     wallet = new Wallet();
+    transaction = new Transaction();
     amount = 50;
     fee = 1;
     recipient = 'r3c1p13nt';

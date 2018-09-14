@@ -51,10 +51,13 @@ class Wallet {
     return balance;
   }
 
-  createTransaction(recipient, amount, fees, blockchain, transactionPool) {
+  createTransaction(recipient, inputAmount, inputFees, blockchain, transactionPool) {
     this.balance = this.calculateBalance(blockchain);
 
-    if (amount + fees > this.balance) {
+    const amount = Number(inputAmount);
+    const fees = Number(inputFees);
+
+    if ((amount + fees) > this.balance) {
       console.log(`Amount (& fees): ${amount + fees}, exceeds current balance: ${this.balance}`);
       return;
     }

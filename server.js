@@ -25,6 +25,11 @@ app.use(bodyParser.json());
 
 app.use("/", express.static(path.join(__dirname, 'public')))
 
+app.use(function (req, res, next) {
+    res.header('Content-Type', 'application/json');
+    next();
+});
+
 app.get('/balance', (req, res) => {
   res.json({
     balance: wallet.calculateBalance(blockchain),

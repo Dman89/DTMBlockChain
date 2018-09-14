@@ -23,6 +23,9 @@ class P2pServer {
       port: P2P_PORT
     });
     server.on('connection', socket => this.connectSocket(socket));
+    server.on('close', (message) => {
+      console.log(message);
+    })
     this.connectToPeers();
     this.log(`Listening to P2P connections on port: ${P2P_PORT}`, true);
   }

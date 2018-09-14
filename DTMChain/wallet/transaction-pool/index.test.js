@@ -9,6 +9,7 @@ describe('TransactionPool', () => {
     blockchain = new Blockchain();
     tp = new TransactionPool();
     wallet = new Wallet();
+    transaction = new Transaction();
     amount = 30;
     fee = 1;
     fees = fee;
