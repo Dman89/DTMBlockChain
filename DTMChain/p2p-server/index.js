@@ -105,7 +105,7 @@ class P2pServer {
 
   log(displayMessage, broadcast) {
     if (displayMessage && broadcast) {
-      console.log(displayMessage);
+      console.log(`P2P Server: ${P2P_PORT} - ${displayMessage}`);
     }
     return broadcast;
   }
