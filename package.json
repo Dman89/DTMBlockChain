@@ -12,9 +12,8 @@
     "start": "node ./server",
     "test": "jest --watchAll",
     "build": "webpack",
-    "watch": "concurrently -n --kill-others npm:dev",
-    "watchNodes": "concurrently -n --kill-others npm:dev2 npm:dev3",
-    "watchDev": "concurrently -n --kill-others npm:test npm:dev npm:webpack"
+    "watch": "concurrently -n --kill-others npm:test npm:dev npm:webpack",
+    "watchNodes": "concurrently -n --kill-others npm:dev2 npm:dev3"
   },
   "keywords": [],
   "author": "",
