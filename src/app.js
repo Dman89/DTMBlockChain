@@ -1,6 +1,15 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import reduxThunk from 'redux-thunk';
+import 'babel-polyfill';
+
+import reducers from './components/rootReducer';
 import { Wallet } from './components';
+
+const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
+const store = createStoreWithMiddleware(reducers);
 
 class Application extends Component {
   componentWillMount() {
@@ -8,11 +17,17 @@ class Application extends Component {
   }
   render() {
     return (<div>
-      Hello World!
+      <div>
+        Welcome to DTM Blockchain!
+      </div>
       <Wallet/>
     </div>);
   }
 }
 
-var mountNode = document.getElementById("app");
-ReactDOM.render( <Application  /> , mountNode);
+ReactDOM.render(
+  <Provider store={store}>
+    <Application />
+  </Provider>,
+  document.getElementById("app")
+);
