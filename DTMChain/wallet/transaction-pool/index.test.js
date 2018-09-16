@@ -2,13 +2,15 @@ const TransactionPool = require('./index');
 const Transaction = require('../transaction');
 const Wallet = require('../index');
 const Blockchain = require('../../blockchain');
+const ChainUtil = require('../../chain-util');
 
 describe('TransactionPool', () => {
-  let tp, wallet, transaction, blockchain, amount, fee, fees;
+  let tp, wallet, transaction, blockchain, amount, fee, fees, invalidWallet;
   beforeEach(() => {
     blockchain = new Blockchain();
     tp = new TransactionPool();
     wallet = new Wallet();
+    invalidWallet = new Wallet();
     transaction = new Transaction();
     amount = 30;
     fee = 1;
@@ -20,6 +22,11 @@ describe('TransactionPool', () => {
     expect(tp.transactions.find(t => t.id === transaction.id)).toEqual(transaction);
   });
 
+  it('only adds a valid transaction to the pool', () => {
+    transaction.input.signature = invalidWallet.sign(ChainUtil.hash(transaction.outputs));
+    expect(tp.updateOrAddTransaction(transaction)).toEqual(false);
+  });
+
   it('updates a transaction in the pool', () => {
     const oldTransaction = JSON.stringify(transaction);
     const newTransaction = transaction.update(wallet, '2nd-4ddre55', amount, fee);
@@ -29,7 +36,7 @@ describe('TransactionPool', () => {
   });
 
   it('clears transactions', () => {
-    tp.clear();
+    tp.clearTransactions();
     expect(tp.transactions).toEqual([]);
   });
 

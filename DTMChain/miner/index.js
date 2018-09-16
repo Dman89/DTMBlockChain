@@ -21,7 +21,7 @@ class Miner {
     const displayMessage = `New block added: ${block.toString()}`;
     this.p2pServer.syncChains(displayMessage);
     this.p2pServer.log(displayMessage, true);
-    this.transactionPool.clear();
+    this.transactionPool.clearTransactions();
     this.p2pServer.broadcastClearTransactions();
     return block;
   }

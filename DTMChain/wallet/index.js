@@ -63,6 +63,11 @@ class Wallet {
     }
 
     let transaction = transactionPool.existingTransaction(this.publicKey);
+
+    if (transaction && !transaction.update) {
+      transaction = new Transaction(transaction);
+    }
+
     if (transaction) {
       transaction.update(this, recipient, amount, fees);
     } else {
@@ -79,8 +84,8 @@ class Wallet {
 
   toString() {
     return `Wallet -
-    publicKey : ${this.publicKey.toString()}
-    balance   : ${this.balance}`
+  publicKey : ${this.publicKey.toString()}
+  balance   : ${this.balance}`
   }
 }
 

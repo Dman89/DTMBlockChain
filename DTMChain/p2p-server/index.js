@@ -61,10 +61,9 @@ class P2pServer {
         this.transactionPool.updateOrAddTransaction(data.transaction);
         this.log(data.displayMessage, (lastTransaction !== data.transaction.input.timestamp));
         lastTransaction = data.transaction.input.timestamp;
-        this.broadcastTransaction(data.transaction, data.message);
         break;
       case MESSAGE_TYPES.clearTransactions:
-        this.transactionPool.clear();
+        this.transactionPool.clearTransactions();
         break;
     }
   }

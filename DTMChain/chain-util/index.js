@@ -1,5 +1,5 @@
 const EC = require('elliptic').ec;
-const ec = new EC('secp256k1');
+const ec = new EC('ed25519') /*|| new EC('secp256k1')*/;
 const uuidV1 = require('uuid/v1');
 const SHA256 = require('crypto-js/sha256');
 

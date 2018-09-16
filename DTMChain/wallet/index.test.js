@@ -65,7 +65,7 @@ describe('Wallet', () => {
       let subtractBalance, recipientBalance;
 
       beforeEach(() => {
-        tp.clear();
+        tp.clearTransactions();
         subtractBalance = 100;
         recipientBalance = wallet.calculateBalance(blockchain);
         wallet.createTransaction(senderWallet.publicKey, subtractBalance, fee, blockchain, tp);
@@ -74,7 +74,7 @@ describe('Wallet', () => {
 
       describe('and the sender sends another transaction to the recipient', () => {
         beforeEach(() => {
-          tp.clear();
+          tp.clearTransactions();
           senderWallet.createTransaction(wallet.publicKey, addBalance, fee, blockchain, tp);
           blockchain.addBlock(tp.transactions);
         });

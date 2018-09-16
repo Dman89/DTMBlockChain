@@ -4,11 +4,11 @@ const {
 } = require('../../config');
 
 class Transaction {
-  constructor() {
-    this.id = ChainUtil.id();
-    this.input = null;
-    this.outputs = [];
-    this.fees = 0;
+  constructor(transaction) {
+    this.id = transaction ? transaction.id : ChainUtil.id();
+    this.input = transaction ? transaction.input : null;
+    this.outputs = transaction ? transaction.outputs : [];
+    this.fees = transaction ? transaction.fees : 0;
   }
 
   static newTransaction(senderWallet, recipient, amount, fee) {

@@ -5,7 +5,7 @@ class TransactionPool {
     this.transactions = [];
   }
 
-  clear() {
+  clearTransactions() {
     this.transactions = [];
   }
 
@@ -14,6 +14,11 @@ class TransactionPool {
   }
 
   updateOrAddTransaction(transaction) {
+    if (!Transaction.verifyTransaction(transaction)) {
+      console.log(`Transaction not signed by sender: ${transaction.id}.`);
+      return false;
+    }
+
     let transactionWithId = this.transactions.find(t => t.id === transaction.id);
 
     if (transactionWithId) {
