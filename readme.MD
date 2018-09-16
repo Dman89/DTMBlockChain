@@ -8,6 +8,9 @@
 ## Server Front End
 
 1. Design Front End
+    1. Wallet
+    1. Mine
+    1. Set Private Key
 1. Build Front End
 
 ## Wallet Front End
