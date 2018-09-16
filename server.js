@@ -20,9 +20,9 @@ app.use(bodyParser.json());
 
 app.use("/", express.static(path.join(__dirname, 'public')))
 
-app.use(function (req, res, next) {
-    res.header('Content-Type', 'application/json');
-    next();
+app.use(function(req, res, next) {
+  res.header('Content-Type', 'application/json');
+  next();
 });
 
 app.get('/balance', (req, res) => {
@@ -36,27 +36,17 @@ app.get('/blocks', (req, res) => {
   res.json(blockchain.chain);
 });
 
-// Remove after the mine-transaction is refactored
-// app.post('/mine', (req, res) => {
-//   const block = blockchain.addBlock(req.body.data);
-//   const displayMessage = `New block added:
-//   ${block.toString()}
-//   `;
-//   console.log(displayMessage);
-//   p2pServer.syncChains(displayMessage);
-//   res.redirect('/blocks');
-// });
-
-app.get('/mine-transactions', (req, res) => {
+app.get('/mine', (req, res) => {
   const block = miner.mine();
   if (!block) {
     res.status(500).json({
       error: "Please restart the node due to an invalid chain."
     });
   }
-  const displayMessage = `New block added:
-  ${block.toString()}
-  `;
+  const displayMessage = `New block added: ${block.toString()}`;
+  this.p2pServer.broadcastClearTransactions();
+  this.p2pServer.syncChains(displayMessage);
+  this.p2pServer.log(displayMessage, true);
   res.redirect('/blocks');
 });
 
@@ -75,7 +65,7 @@ app.get('/transactions', (req, res) => {
   res.json(tp.transactions);
 });
 
-app.get('/public-key', (req, res) => {
+app.get('/publicKey', (req, res) => {
   res.json({
     publicKey: wallet.publicKey
   });
