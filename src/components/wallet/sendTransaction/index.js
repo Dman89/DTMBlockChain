@@ -33,6 +33,7 @@ class SendTransaction extends Component {
   }
   sendForm() {
     const {recipient, amount, fee} = this.state;
+    this.props.initTransaction();
     this.props.sendTransaction({
       recipient,
       amount,
