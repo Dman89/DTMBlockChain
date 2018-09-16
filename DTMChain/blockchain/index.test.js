@@ -20,18 +20,18 @@ describe('Blockchain', () => {
 
   it('validates a valid chain', () => {
   	blockchain2.addBlock('Valid Input');
-  	expect(blockchain.isValidChain(blockchain2.chain)).toBe(true);
+  	expect(blockchain.isChainValid(blockchain2.chain)).toBe(true);
   });
 
   it('invalidates a chain with a corrupt genesis block', () => {
   	blockchain2.chain[0].data = 'Corrupt Input';
-    expect(blockchain.isValidChain(blockchain2.chain)).toBe(false);
+    expect(blockchain.isChainValid(blockchain2.chain)).toBe(false);
   });
 
   it('invalidates a corrupt chain', () => {
     blockchain2.addBlock('Valid Input');
     blockchain2.chain[1].data = 'Corrupt Input';
-    expect(blockchain.isValidChain(blockchain2.chain)).toBe(false);
+    expect(blockchain.isChainValid(blockchain2.chain)).toBe(false);
   });
 
   it('replaces the chain with a valid chain', () => {

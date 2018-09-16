@@ -18,6 +18,11 @@ class Miner {
     );
 
     const block = this.blockchain.addBlock(validTransactions);
+    
+    if (!block) {
+      return false;
+    }
+
     const displayMessage = `New block added: ${block.toString()}`;
     this.p2pServer.syncChains(displayMessage);
     this.p2pServer.log(displayMessage, true);

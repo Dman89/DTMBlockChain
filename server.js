@@ -36,18 +36,24 @@ app.get('/blocks', (req, res) => {
   res.json(blockchain.chain);
 });
 
-app.post('/mine', (req, res) => {
-  const block = blockchain.addBlock(req.body.data);
-  const displayMessage = `New block added:
-  ${block.toString()}
-  `;
-  console.log(displayMessage);
-  p2pServer.syncChains(displayMessage);
-  res.redirect('/blocks');
-});
+// Remove after the mine-transaction is refactored
+// app.post('/mine', (req, res) => {
+//   const block = blockchain.addBlock(req.body.data);
+//   const displayMessage = `New block added:
+//   ${block.toString()}
+//   `;
+//   console.log(displayMessage);
+//   p2pServer.syncChains(displayMessage);
+//   res.redirect('/blocks');
+// });
 
 app.get('/mine-transactions', (req, res) => {
   const block = miner.mine();
+  if (!block) {
+    res.status(500).json({
+      error: "Please restart the node due to an invalid chain."
+    });
+  }
   const displayMessage = `New block added:
   ${block.toString()}
   `;

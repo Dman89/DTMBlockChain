@@ -12,7 +12,6 @@ class Transaction {
   }
 
   static newTransaction(senderWallet, recipient, amount, fee) {
-    // TODO Run a check with the public key and dont trust user input
     if (amount + fee > senderWallet.balance) {
       console.log(`Amount (& fee): ${amount + fee} exceeds balance.`);
       return;
