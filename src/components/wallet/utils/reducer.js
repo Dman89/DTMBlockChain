@@ -1,14 +1,24 @@
 import {
+  INITIALIZE_BALANCE,
   FETCH_BALANCE,
   CONNECTION_ERROR,
-  SEND_TRANSACTION,
+  INITIALIZE_TRANSACTION,
   SUCCESSFUL_TRANSACTION,
   CLEAR_TRANSACTION,
   FETCH_TRANSACTIONS
 } from './types';
 
-function walletReducer(state = {balance: 0, publicKey: ''}, action) {
+function walletReducer(state = {
+  balance: 0,
+  publicKey: ''
+}, action) {
   switch (action.type) {
+    case INITIALIZE_BALANCE:
+      return {
+        ...state,
+        balance: action.payload.balance,
+        publicKey: action.payload.publicKey
+      };
     case FETCH_BALANCE:
       return {
         ...state,
@@ -25,18 +35,19 @@ function walletReducer(state = {balance: 0, publicKey: ''}, action) {
 };
 
 function transactionsReducer(state = {
-  status: {
-    mesage: '',
-    state: -1
+    status: {
+      mesage: '',
+      state: -1
+    },
+    transactions: []
   },
-  transactions: [] },
   action) {
   switch (action.type) {
-    case SEND_TRANSACTION:
+    case INITIALIZE_TRANSACTION:
       return {
         ...state,
         status: {
-          message: 'Sending...',
+          message: 'Sending transaction to the server...',
           state: 1
         }
       };
