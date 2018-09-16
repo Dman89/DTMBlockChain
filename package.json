@@ -12,7 +12,7 @@
     "start": "node ./server",
     "test": "jest --watchAll",
     "build": "webpack",
-    "watch": "concurrently -n --kill-others npm:test npm:dev npm:webpack",
+    "watch": "concurrently -n --kill-others npm:test npm:dev npm:build",
     "watchNodes": "concurrently -n --kill-others npm:dev2 npm:dev3"
   },
   "keywords": [],
