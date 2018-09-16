@@ -13,6 +13,7 @@ class Wallet extends Component {
 	    balance,
 	    publicKey
 	  });
+		this.props.initBalance();
 	  this.props.fetchBalanceAndPublicKey();
 	}
 	componentWillReceiveProps(newProps) {
