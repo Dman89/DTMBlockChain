@@ -23,7 +23,7 @@ class Miner {
     }
 
     this.transactionPool.clearTransactions();
-    
+
     return block;
   }
 }

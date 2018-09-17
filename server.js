@@ -3,9 +3,9 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const Blockchain = require('./DTMChain/blockchain');
 const Wallet = require('./DTMChain/wallet');
-const TransactionPool = require('./DTMChain/wallet/transaction-pool');
+const TransactionPool = require('./DTMChain/wallet/transactionPool');
 const Miner = require('./DTMChain/miner');
-const P2pServer = require('./DTMChain/p2p-server');
+const P2pServer = require('./DTMChain/p2pServer');
 
 const HTTP_PORT = process.env.HTTP_PORT || 3001;
 
@@ -14,7 +14,7 @@ const blockchain = new Blockchain();
 const wallet = new Wallet();
 const tp = new TransactionPool();
 const p2pServer = new P2pServer(blockchain, tp);
-const miner = new Miner(blockchain, tp, wallet, p2pServer);
+const miner = new Miner(blockchain, tp, wallet);
 
 app.use(bodyParser.json());
 
@@ -44,9 +44,9 @@ app.get('/mine', (req, res) => {
     });
   }
   const displayMessage = `New block added: ${block.toString()}`;
-  this.p2pServer.broadcastClearTransactions();
-  this.p2pServer.syncChains(displayMessage);
-  this.p2pServer.log(displayMessage, true);
+  p2pServer.broadcastClearTransactions();
+  p2pServer.syncChains(displayMessage);
+  p2pServer.log(displayMessage, true);
   res.redirect('/blocks');
 });
 

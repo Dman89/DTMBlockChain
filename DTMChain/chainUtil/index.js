@@ -11,7 +11,7 @@ const SHA256 = require('crypto-js/sha256');
 class ChainUtil {
   static genKeyPair(privateKey) {
     if (privateKey) {
-      return ec.keyFromPrivate(privateKey, 'hex');
+      return ec.keyFromSecret(privateKey);
     }
     return ec.genKeyPair();
   }

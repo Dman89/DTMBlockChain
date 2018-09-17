@@ -1,4 +1,4 @@
-const ChainUtil = require('../../chain-util');
+const ChainUtil = require('../../chainUtil');
 const {
   MINING_REWARD
 } = require('../../config');

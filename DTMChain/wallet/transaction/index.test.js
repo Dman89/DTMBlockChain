@@ -11,7 +11,7 @@ describe('Transaction', () => {
     transaction = new Transaction();
     amount = 50;
     fee = 1;
-    recipient = 'r3c1p13nt';
+    recipient = new Wallet().publicKey;
     transaction = Transaction.newTransaction(wallet, recipient, amount, fee);
   });
 
@@ -42,7 +42,7 @@ describe('Transaction', () => {
     let nextAmount, nextRecipient;
     beforeEach(() => {
       nextAmount = 20;
-      nextRecipient = 'n3xt-4ddr355';
+      nextRecipient = new Wallet().publicKey;
       transaction = transaction.update(wallet, nextRecipient, nextAmount, fee);
     });
 

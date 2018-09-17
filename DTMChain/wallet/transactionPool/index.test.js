@@ -2,7 +2,7 @@ const TransactionPool = require('./index');
 const Transaction = require('../transaction');
 const Wallet = require('../index');
 const Blockchain = require('../../blockchain');
-const ChainUtil = require('../../chain-util');
+const ChainUtil = require('../../chainUtil');
 
 describe('TransactionPool', () => {
   let tp, wallet, transaction, blockchain, amount, fee, fees, invalidWallet;
